@@ -10,7 +10,6 @@ import Charts
 import HealthKit
 
 
-
 struct graphView: View {
     let healthStore = HKHealthStore()
     let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
@@ -35,7 +34,11 @@ struct graphView: View {
                 }
             } else { // 取得された歩数を表示する
                 Text("Steps: \(Int(steps))")
+                    .padding()
+                
+                
             }
+            AreaMarkView()
         }
     }
     
@@ -70,3 +73,46 @@ struct graphView_Previews: PreviewProvider {
         graphView()
     }
 }
+
+
+struct AreaMarkView: View {
+    var body: some View {
+        Chart(sampleData) { data in
+            AreaMark(
+                x: .value("Name", data.name),
+                y: .value("Amount", data.amount)
+            )
+            .foregroundStyle(by: .value("From", data.from))
+            .position(by: .value("From", data.from))
+        }
+        .chartForegroundStyleScale([
+            "PlaceA": .green.opacity(0.4), "PlaceB": .purple.opacity(0.4)
+        ])
+        .frame(height: 300)
+        .padding()
+    }
+}
+
+
+
+
+struct SampleData: Identifiable {
+    var id: String { name }
+    let name: String
+    let amount: Double
+    let from: String
+}
+let sampleData: [SampleData] = [
+    .init(name: "NameA", amount: 2500, from: "PlaceA"),
+    .init(name: "NameB", amount: 3500, from: "PlaceA"),
+    .init(name: "NameC", amount: 2000, from: "PlaceA"),
+    .init(name: "NameD", amount: 4500, from: "PlaceA"),
+    .init(name: "NameE", amount: 5000,from: "PlaceA"),
+    .init(name: "NameF", amount: 5500,from: "PlaceA"),
+    .init(name: "NameA", amount: 360, from: "PlaceB"),
+    .init(name: "NameB", amount: 640, from: "PlaceB"),
+    .init(name: "NameC", amount: 680, from: "PlaceB"),
+    .init(name: "NameD", amount: 760, from: "PlaceB"),
+    .init(name: "NameE", amount: 780, from: "PlaceB"),
+    .init(name: "NameF", amount: 800, from: "PlaceB")
+]

@@ -26,7 +26,7 @@ struct ContentView: View {
                 .tag(1)
             InfoView()
                 .tabItem {
-                    Image(systemName: "gear")
+                    Image(systemName: "info.circle")
                     Text("情報")
                 }
                 .tag(2)
@@ -34,11 +34,44 @@ struct ContentView: View {
         .navigationBarTitle(Text("タイトル"), displayMode: .inline)
         .padding()
     }
+    
 }
 
 struct FirstView: View {
+    let texts = ["Hello, world!", "How are you today?", "What's up?", "Nice to meet you!"]
+    let fonts: [Font]
+
+    @State private var currentTextIndex = 0
+    @State private var currentFontIndex = 0
+    init() {
+        // テキストファイルからフォント名のリストを読み込む
+        if let url = Bundle.main.url(forResource: "Fonts", withExtension: "txt"),
+            let fontNames = try? String(contentsOf: url).split(separator: "\n") {
+            // フォント名のリストから`Font`オブジェクトの配列を生成する
+            fonts = fontNames.map { Font.custom(String($0), size: 24) }
+        } else {
+            // ファイルが見つからなかった場合は、デフォルトのフォントを使用する
+            fonts = [.largeTitle, .title, .headline, .subheadline, .body]
+        }
+    }
+
     var body: some View {
-        Text("ホーム画面")
+        VStack {
+            Spacer()
+            
+            Text(texts[currentTextIndex])
+                .font(fonts[currentFontIndex])
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+
+            Spacer()
+
+            Button("Change") {
+                currentTextIndex = (currentTextIndex + 1) % texts.count
+                currentFontIndex = Int.random(in: 0..<fonts.count)
+            }
+            .padding()
+        }
     }
 }
 
