@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05A8883029F29DC200BDB96B /* font.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05A8882F29F29DC200BDB96B /* font.txt */; };
+		05A8883429F2A13B00BDB96B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8883329F2A13B00BDB96B /* SettingView.swift */; };
 		05B1772229BB3B6000F8FC87 /* Master_healthKitAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1772129BB3B6000F8FC87 /* Master_healthKitAppApp.swift */; };
 		05B1772429BB3B6000F8FC87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1772329BB3B6000F8FC87 /* ContentView.swift */; };
 		05B1772629BB3B6500F8FC87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B1772529BB3B6500F8FC87 /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05A8882F29F29DC200BDB96B /* font.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = font.txt; sourceTree = "<group>"; };
+		05A8883329F2A13B00BDB96B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		05B1771E29BB3B6000F8FC87 /* Master-healthKitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Master-healthKitApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B1772129BB3B6000F8FC87 /* Master_healthKitAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Master_healthKitAppApp.swift; sourceTree = "<group>"; };
 		05B1772329BB3B6000F8FC87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,7 +114,9 @@
 				05B1775529BB467E00F8FC87 /* Info.plist */,
 				05B1772129BB3B6000F8FC87 /* Master_healthKitAppApp.swift */,
 				05B1772329BB3B6000F8FC87 /* ContentView.swift */,
+				05A8883329F2A13B00BDB96B /* SettingView.swift */,
 				05D9BC8829E9638600908838 /* Quote.txt */,
+				05A8882F29F29DC200BDB96B /* font.txt */,
 				05B1774F29BB41DC00F8FC87 /* infoView.swift */,
 				05B1775329BB42F600F8FC87 /* FoodView.swift */,
 				05B1775129BB42CC00F8FC87 /* NewsAPI.swift */,
@@ -251,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05B1772929BB3B6500F8FC87 /* Preview Assets.xcassets in Resources */,
+				05A8883029F29DC200BDB96B /* font.txt in Resources */,
 				05D9BC8929E9638600908838 /* Quote.txt in Resources */,
 				05B1772629BB3B6500F8FC87 /* Assets.xcassets in Resources */,
 			);
@@ -280,6 +287,7 @@
 				05B1775429BB42F600F8FC87 /* FoodView.swift in Sources */,
 				05B1775029BB41DC00F8FC87 /* infoView.swift in Sources */,
 				05B1774E29BB3CFE00F8FC87 /* graphView.swift in Sources */,
+				05A8883429F2A13B00BDB96B /* SettingView.swift in Sources */,
 				05B1775229BB42CC00F8FC87 /* NewsAPI.swift in Sources */,
 				05B1772429BB3B6000F8FC87 /* ContentView.swift in Sources */,
 				05B1772229BB3B6000F8FC87 /* Master_healthKitAppApp.swift in Sources */,
