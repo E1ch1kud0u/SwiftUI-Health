@@ -8,12 +8,15 @@
 import Foundation
 
 class NewsAPI {
-    let apiKey = "f7c46a254bc04e2f945d28ff807477af" // ここにあなたのAPIキーを入力してください
+    let fdaKey = "XLjqSuh524pcubw3I5Y5utdkPgfQ1fnpzUiDwxgk" // ここにあなたのAPIキーを入力してください
+    let openfda = "menstruation+"
+    let medplus = "menstruation+"
     
-    func fetchNews(completion: @escaping ([Article]) -> ()) {
-        print("fetchNews called")
+    func fetchArticles(completion: @escaping ([Article]) -> ()) {
+        print("fetchArticle called")
 
-        guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=jp&apiKey=\(apiKey)") else { return }
+        guard let url1 = URL(string: "https://api.fda.gov/drug/event.json?api_key=\(fdaKey)&search=\(openfda)") else { return }
+        guard let url2 = URL(string: "https://wsearch.nlm.nih.gov/ws/query?db=healthTopics&term=\(medplus)") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             guard let data = data else { return }

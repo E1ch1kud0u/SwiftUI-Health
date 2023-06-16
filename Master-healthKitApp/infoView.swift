@@ -33,7 +33,7 @@ struct InfoView: View {
             NewsAPI().fetchNews { articles in
                 self.articles = articles
                 for article in articles {
-                    // print(article.title)
+                    
                 }
             }
         }

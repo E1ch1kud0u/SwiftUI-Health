@@ -47,45 +47,52 @@ struct ContentView: View {
 struct FirstView: View {
     @State var randomLine: String = ""
     @State var randomFont: String = ""
-    
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         VStack {
             Spacer()
-            
+
             Text(randomLine)
                 .font(Font.custom(randomFont, size: 24))
                 .padding()
-            
+
             Spacer()
         }
         .onAppear {
-            if let filepath = Bundle.main.path(forResource: "Quote", ofType: "txt") {
-                do {
-                    let contents = try String(contentsOfFile: filepath)
-                    let lines = contents.components(separatedBy: .newlines)
-                    self.randomLine = lines.randomElement() ?? ""
-                } catch {
-                    print("Error loading contents of file")
-                }
-            } else {
-                print("File not found")
+            // ランダムな行とフォントを設定するロジックは省略
+
+            // ダークモード切り替え時にランダムな行とフォントを再設定する
+            updateRandomLineAndFont()
+        }
+    }
+
+    private func updateRandomLineAndFont() {
+        if let filepath = Bundle.main.path(forResource: "Quote", ofType: "txt") {
+            do {
+                let contents = try String(contentsOfFile: filepath)
+                let lines = contents.components(separatedBy: .newlines)
+                self.randomLine = lines.randomElement() ?? ""
+            } catch {
+                print("Error loading contents of file")
             }
-            if let filepath = Bundle.main.path(forResource: "font", ofType: "txt") {
-                do {
-                    let contents = try String(contentsOfFile: filepath)
-                    let fonts = contents.components(separatedBy: .newlines)
-                    self.randomFont = fonts.randomElement() ?? ""
-                } catch {
-                    print("Error loading contents of file")
-                }
-            } else {
-                print("File not found")
+        } else {
+            print("File not found")
+        }
+
+        if let filepath = Bundle.main.path(forResource: "font", ofType: "txt") {
+            do {
+                let contents = try String(contentsOfFile: filepath)
+                let fonts = contents.components(separatedBy: .newlines)
+                self.randomFont = fonts.randomElement() ?? ""
+            } catch {
+                print("Error loading contents of file")
             }
+        } else {
+            print("File not found")
         }
     }
 }
-
-
 
 
 
