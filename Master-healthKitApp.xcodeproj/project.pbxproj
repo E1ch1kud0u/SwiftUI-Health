@@ -21,6 +21,8 @@
 		05B1775029BB41DC00F8FC87 /* infoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1774F29BB41DC00F8FC87 /* infoView.swift */; };
 		05B1775229BB42CC00F8FC87 /* NewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1775129BB42CC00F8FC87 /* NewsAPI.swift */; };
 		05B1775429BB42F600F8FC87 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B1775329BB42F600F8FC87 /* FoodView.swift */; };
+		05B388742A45B7AC00A73177 /* Kanna in Frameworks */ = {isa = PBXBuildFile; productRef = 05B388732A45B7AC00A73177 /* Kanna */; };
+		05B388772A45B7D700A73177 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 05B388762A45B7D700A73177 /* Alamofire */; };
 		05D9BC8929E9638600908838 /* Quote.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05D9BC8829E9638600908838 /* Quote.txt */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B388742A45B7AC00A73177 /* Kanna in Frameworks */,
+				05B388772A45B7D700A73177 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +175,10 @@
 			dependencies = (
 			);
 			name = "Master-healthKitApp";
+			packageProductDependencies = (
+				05B388732A45B7AC00A73177 /* Kanna */,
+				05B388762A45B7D700A73177 /* Alamofire */,
+			);
 			productName = "Master-healthKitApp";
 			productReference = 05B1771E29BB3B6000F8FC87 /* Master-healthKitApp.app */;
 			productType = "com.apple.product-type.application";
@@ -243,6 +251,10 @@
 				Base,
 			);
 			mainGroup = 05B1771529BB3B6000F8FC87;
+			packageReferences = (
+				05B388722A45B7AC00A73177 /* XCRemoteSwiftPackageReference "Kanna" */,
+				05B388752A45B7D700A73177 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 05B1771F29BB3B6000F8FC87 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -627,6 +639,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		05B388722A45B7AC00A73177 /* XCRemoteSwiftPackageReference "Kanna" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tid-kijyun/Kanna";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		05B388752A45B7D700A73177 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		05B388732A45B7AC00A73177 /* Kanna */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05B388722A45B7AC00A73177 /* XCRemoteSwiftPackageReference "Kanna" */;
+			productName = Kanna;
+		};
+		05B388762A45B7D700A73177 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05B388752A45B7D700A73177 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 05B1771629BB3B6000F8FC87 /* Project object */;
 }
