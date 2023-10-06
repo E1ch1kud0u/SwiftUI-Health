@@ -74,7 +74,6 @@ BodoniSvtyTwoOSITCTT-Book
 BodoniSvtyTwoOSITCTT-BookIt
 BodoniSvtyTwoOSITCTT-Bold
 BodoniSvtyTwoSCITCTT-Book
-BodoniOrnamentsITCTT
 BradleyHandITCTT-Bold
 ChalkboardSE-Regular
 ChalkboardSE-Light

@@ -1,118 +1,119 @@
-//
-//  graphView.swift
-//  Master-healthKitApp
-//
-//  Created by Airi Furukawa on 2023/03/10.
-//
-
 import SwiftUI
-import Charts
 import HealthKit
-
+import SwiftUICharts
 
 struct graphView: View {
     let healthStore = HKHealthStore()
     let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
+    let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
+  //  let bPressure = HKObjectType.quantityType(forIdentifier: .bloodPressure)!
     
-    @State private var steps: Double = 0.0 // 取得した歩数を保存する変数
+    @State private var steps: Double = 0.0
+    @State private var hRate: Double = 0.0
+//    @State private var bloodP: Double = 0.0
+    @State private var stepHistory: [Double] = []
+    @State private var heartRateHistory: [Double] = []
     
     var body: some View {
         VStack {
-            if steps == 0.0 { // 歩数が取得されていない場合には「Authorize」ボタンを表示する
-                Text("Tap the button to authorize HealthKit access")
-                Button("Authorize") {
-                    healthStore.requestAuthorization(toShare: nil, read: [stepCount]) { (success, error) in
-                        if let error = error {
-                            print("Failed to request authorization = \(error)")
-                            return
-                        }
-                        if success {
-                            print("Authorization granted")
-                            getTodayStepCount() // 認証が成功したら今日の歩数を取得する
-                        }
+            Button("Authorize Data") {
+                authorizeStepCount()
+                authorizeHeartRate()
+            }
+            
+            GeometryReader { geo in
+                HStack { // Use HStack instead of VStack
+                    if let maxStep = stepHistory.max(), let minStep = stepHistory.min() {
+                        LineChartView(data: stepHistory, title: "Step Count", legend: "Steps", form: ChartForm.medium)
+                            .frame(width: geo.size.width / 2, height: 200) // Set a fixed width for the chart view
+                    }
+                    if let maxHR = heartRateHistory.max(), let minHR = heartRateHistory.min() {
+                        LineChartView(data: heartRateHistory, title: "Heart Rate", legend: "BPM", form: ChartForm.medium)
+                            .frame(width: geo.size.width / 2, height: 200) // Set a fixed width for the chart view
                     }
                 }
-            } else { // 取得された歩数を表示する
-                Text("Steps: \(Int(steps))")
-                    .padding()
-                
-                
             }
-            AreaMarkView()
+        }
+        .animation(.easeInOut) // Apply animation to the container view
+    }
+    
+    private func authorizeStepCount() {
+        let healthTypesToRead: Set<HKObjectType> = [stepCount]
+        healthStore.requestAuthorization(toShare: nil, read: healthTypesToRead) { (success, error) in
+            if success {
+                print("Step count authorization granted")
+                getTodayStepCount()
+            } else {
+                if let error = error {
+                    print("Step count authorization failed: \(error.localizedDescription)")
+                }
+            }
         }
     }
     
-    // 今日の歩数を取得する
+    private func authorizeHeartRate() {
+        let healthTypesToRead: Set<HKObjectType> = [heartRate]
+        healthStore.requestAuthorization(toShare: nil, read: healthTypesToRead) { (success, error) in
+            if success {
+                print("Heart rate authorization granted")
+                getTodayHRavg()
+            } else {
+                if let error = error {
+                    print("Heart rate authorization failed: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+
+    
     private func getTodayStepCount() {
         let calendar = Calendar.current
         let now = Date()
         let startDate = calendar.startOfDay(for: now)
         let endDate = now
-        
+
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
-        let query = HKSampleQuery(sampleType: stepCount, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, samples, error) in
-            if let error = error {
-                print("Failed to fetch steps = \(error)")
+        let query = HKStatisticsQuery(quantityType: stepCount, quantitySamplePredicate: predicate, options: .cumulativeSum) { (query, result, error) in
+            guard let result = result, let sum = result.sumQuantity() else {
+                if let error = error {
+                    print("Failed to fetch steps: \(error.localizedDescription)")
+                }
                 return
             }
-            
-            guard let samples = samples as? [HKQuantitySample] else { return }
-            
+
             DispatchQueue.main.async {
-                steps = samples.reduce(0.0) { $0 + $1.quantity.doubleValue(for: HKUnit.count()) } // 歩数を合計し、@State変数に保存する
+                self.steps = sum.doubleValue(for: HKUnit.count())
+                self.stepHistory.append(self.steps) // Safely add to the history array
             }
         }
-        
+
         healthStore.execute(query)
     }
-}
+    private func getTodayHRavg() {
+        let calendar = Calendar.current
+        let now = Date()
+        let startDate = calendar.startOfDay(for: now)
+        let endDate = now
 
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
+        let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: predicate, options: .discreteAverage) { (query, result, error) in
+            guard let result = result, let average = result.averageQuantity() else {
+                if let error = error {
+                    print("Failed to fetch heart rate: \(error.localizedDescription)")
+                }
+                return
+            }
 
-struct graphView_Previews: PreviewProvider {
-    static var previews: some View {
-        graphView()
-    }
-}
-
-
-struct AreaMarkView: View {
-    var body: some View {
-        Chart(sampleData) { data in
-            AreaMark(
-                x: .value("Name", data.name),
-                y: .value("Amount", data.amount)
-            )
-            .foregroundStyle(by: .value("From", data.from))
-            .position(by: .value("From", data.from))
+            DispatchQueue.main.async {
+                self.hRate = average.doubleValue(for: HKUnit(from: "count/min"))
+                self.heartRateHistory.append(self.hRate) // Safely add to the history array
+            }
         }
-        .chartForegroundStyleScale([
-            "PlaceA": .green.opacity(0.4), "PlaceB": .purple.opacity(0.4)
-        ])
-        .frame(height: 300)
-        .padding()
+
+        healthStore.execute(query)
     }
+
 }
 
-
-
-
-struct SampleData: Identifiable {
-    var id: String { name }
-    let name: String
-    let amount: Double
-    let from: String
-}
-let sampleData: [SampleData] = [
-    .init(name: "NameA", amount: 2500, from: "PlaceA"),
-    .init(name: "NameB", amount: 3500, from: "PlaceA"),
-    .init(name: "NameC", amount: 2000, from: "PlaceA"),
-    .init(name: "NameD", amount: 4500, from: "PlaceA"),
-    .init(name: "NameE", amount: 5000,from: "PlaceA"),
-    .init(name: "NameF", amount: 5500,from: "PlaceA"),
-    .init(name: "NameA", amount: 360, from: "PlaceB"),
-    .init(name: "NameB", amount: 640, from: "PlaceB"),
-    .init(name: "NameC", amount: 680, from: "PlaceB"),
-    .init(name: "NameD", amount: 760, from: "PlaceB"),
-    .init(name: "NameE", amount: 780, from: "PlaceB"),
-    .init(name: "NameF", amount: 800, from: "PlaceB")
-]
+//

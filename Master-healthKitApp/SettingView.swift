@@ -14,18 +14,29 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationView {
-            
-                Form {
-                    Section(header: Text("General")) {
-                        Toggle(isOn: .constant(true)) {
-                            Text("Notifications")
-                        }
-
-                        Toggle(isOn: .constant(true)) {
-                            Text("Location Services")
-                        }
+            Button("Authorize Data") {
+//                graphView.authorizeStepCount()
+//                graphView.authorizeHeartRate()
+            }
+            Form {
+                Section(header: Text("General")) {
+                    Toggle(isOn: .constant(true)) {
+                        Text("Notifications")
+                    }
+                    Toggle(isOn: .constant(true)) {
+                        Text("Location Services")
                     }
                 }
+                
+//                Button("Privacy Policy") {
+//                                    // ボタンがタップされたとき、WebViewを表示
+//                                    isShowingWebView.toggle()
+//                                }
+//                                .sheet(isPresented: $isShowingWebView) {
+//                                    // WebViewを表示する
+//                                    WebViewContainer(urlString: "https://example.com/privacy-policy") // ここにプライバシーポリシーのURLを指定
+//                                }
+            }
             .navigationBarTitle("Settings")
         }
         
