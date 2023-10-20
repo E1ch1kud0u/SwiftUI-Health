@@ -37,7 +37,7 @@ struct graphView: View {
         .animation(.easeInOut) // Apply animation to the container view
     }
     
-    private func authorizeStepCount() {
+     func authorizeStepCount() {
         let healthTypesToRead: Set<HKObjectType> = [stepCount]
         healthStore.requestAuthorization(toShare: nil, read: healthTypesToRead) { (success, error) in
             if success {
@@ -51,7 +51,7 @@ struct graphView: View {
         }
     }
     
-    private func authorizeHeartRate() {
+    func authorizeHeartRate() {
         let healthTypesToRead: Set<HKObjectType> = [heartRate]
         healthStore.requestAuthorization(toShare: nil, read: healthTypesToRead) { (success, error) in
             if success {

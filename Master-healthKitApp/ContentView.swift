@@ -27,7 +27,7 @@ struct ContentView: View {
             InfoView()
                 .tabItem {
                     Image(systemName: "info.circle")
-                    Text("Information")
+                    Text("NEWS")
                 }
                 .tag(2)
             SettingsView()
@@ -47,16 +47,23 @@ struct ContentView: View {
 struct FirstView: View {
     @State var randomLine: String = ""
     @State var randomFont: String = ""
+    @State var randomImageName: String = ""
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
             Spacer()
-
+            Image(randomImageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 200, height: 200) // 画像のサイズを適宜調整
+                .padding()
+            
             Text(randomLine)
                 .font(Font.custom(randomFont, size: 24))
                 .padding()
-
+            
+            
             Spacer()
         }
         .onAppear {
@@ -68,16 +75,27 @@ struct FirstView: View {
     }
 
     private func updateRandomLineAndFont() {
-        if let filepath = Bundle.main.path(forResource: "Quote", ofType: "txt") {
+//        if let filepath = Bundle.main.path(forResource: "Quote", ofType: "txt") {
+//            do {
+//                let contents = try String(contentsOfFile: filepath)
+//                let lines = contents.components(separatedBy: .newlines)
+//                self.randomLine = lines.randomElement() ?? ""
+//            } catch {
+//                print("Error loading contents of file")
+//            }
+//        } else {
+//            print("File not found")
+//        }
+        if let quoteFilePath = Bundle.main.path(forResource: "Quote", ofType: "txt") {
             do {
-                let contents = try String(contentsOfFile: filepath)
-                let lines = contents.components(separatedBy: .newlines)
-                self.randomLine = lines.randomElement() ?? ""
+                let quoteContents = try String(contentsOfFile: quoteFilePath)
+                let quoteLines = quoteContents.components(separatedBy: .newlines)
+                self.randomLine = quoteLines.randomElement() ?? ""
             } catch {
-                print("Error loading contents of file")
+                print("Error loading contents of quote file")
             }
         } else {
-            print("File not found")
+            print("Quote file not found")
         }
 
         if let filepath = Bundle.main.path(forResource: "font", ofType: "txt") {
@@ -91,16 +109,31 @@ struct FirstView: View {
         } else {
             print("File not found")
         }
+        
+//        if let filepath = Bundle.main.path(forResource: "text", ofType: "txt") {
+//            do {
+//                let contents = try String(contentsOfFile: filepath)
+//                let imageNames = contents.components(separatedBy: .newlines)
+//                self.randomImageName = imageNames.randomElement() ?? ""
+//            } catch {
+//                print("Error loading contents of file")
+//            }
+//        } else {
+//            print("File not found")
+//        }
+        if let imagesFilePath = Bundle.main.path(forResource: "image", ofType: "txt") {
+            do {
+                let imagesContents = try String(contentsOfFile: imagesFilePath)
+                let imageNames = imagesContents.components(separatedBy: .newlines)
+                // 同じインデックスの有名人の名前を取得
+                if let index = imageNames.firstIndex(of: randomLine) {
+                    self.randomImageName = imageNames[index]
+                }
+            } catch {
+                print("Error loading contents of image file")
+            }
+        } else {
+            print("Image file not found")
+        }
     }
 }
-
-
-
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-

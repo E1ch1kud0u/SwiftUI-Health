@@ -10,36 +10,25 @@ import SwiftUI
 
 
 struct SettingsView: View {
-    @State private var selectedThemeIndex = UserDefaults.standard.integer(forKey: "colorTheme")
-
-    var body: some View {
-        NavigationView {
-            Button("Authorize Data") {
-//                graphView.authorizeStepCount()
-//                graphView.authorizeHeartRate()
-            }
-            Form {
-                Section(header: Text("General")) {
-                    Toggle(isOn: .constant(true)) {
-                        Text("Notifications")
-                    }
-                    Toggle(isOn: .constant(true)) {
-                        Text("Location Services")
-                    }
+    var body: some View{
+        NavigationView{
+            VStack{
+                NavigationLink(destination: TermsAndConditionsENView()) {
+                    Text("Terms and conditions")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
                 }
-                
-//                Button("Privacy Policy") {
-//                                    // ボタンがタップされたとき、WebViewを表示
-//                                    isShowingWebView.toggle()
-//                                }
-//                                .sheet(isPresented: $isShowingWebView) {
-//                                    // WebViewを表示する
-//                                    WebViewContainer(urlString: "https://example.com/privacy-policy") // ここにプライバシーポリシーのURLを指定
-//                                }
+                NavigationLink(destination: TermsAndConditionsJPView()) {
+                    Text("利用規約")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
             }
-            .navigationBarTitle("Settings")
         }
-        
     }
 }
 

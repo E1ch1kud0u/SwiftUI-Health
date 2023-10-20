@@ -29,6 +29,11 @@
 		05D9BC8929E9638600908838 /* Quote.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05D9BC8829E9638600908838 /* Quote.txt */; };
 		05EBA6112A7D08D000757387 /* fix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EBA6102A7D08D000757387 /* fix.swift */; };
 		05EBA6162A7D0F3600757387 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 05EBA6152A7D0F3600757387 /* SwiftUICharts */; };
+		AD1251952AD9590000F8C9F8 /* TermsAndConditionsJPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1251942AD9590000F8C9F8 /* TermsAndConditionsJPView.swift */; };
+		AD1251972AD959C200F8C9F8 /* TermsAndConditionsENView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1251962AD959C200F8C9F8 /* TermsAndConditionsENView.swift */; };
+		AD12519E2AD9625100F8C9F8 /* TACen.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD12519C2AD9625100F8C9F8 /* TACen.txt */; };
+		AD12519F2AD9625100F8C9F8 /* TACjp.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD12519D2AD9625100F8C9F8 /* TACjp.txt */; };
+		ADD0CCDE2AE28F7400452C31 /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = ADD0CCDD2AE28F7400452C31 /* text.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +78,11 @@
 		05D9BC8829E9638600908838 /* Quote.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Quote.txt; sourceTree = "<group>"; };
 		05EA863D29BB4AAD00F22E31 /* Master-healthKitApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Master-healthKitApp.entitlements"; sourceTree = "<group>"; };
 		05EBA6102A7D08D000757387 /* fix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fix.swift; sourceTree = "<group>"; };
+		AD1251942AD9590000F8C9F8 /* TermsAndConditionsJPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsJPView.swift; sourceTree = "<group>"; };
+		AD1251962AD959C200F8C9F8 /* TermsAndConditionsENView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsENView.swift; sourceTree = "<group>"; };
+		AD12519C2AD9625100F8C9F8 /* TACen.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TACen.txt; path = ../../../Downloads/TACen.txt; sourceTree = "<group>"; };
+		AD12519D2AD9625100F8C9F8 /* TACjp.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TACjp.txt; path = ../../../Downloads/TACjp.txt; sourceTree = "<group>"; };
+		ADD0CCDD2AE28F7400452C31 /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text.txt; path = ../../../Downloads/text.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,12 +142,17 @@
 				05B1772329BB3B6000F8FC87 /* ContentView.swift */,
 				05D9BC8829E9638600908838 /* Quote.txt */,
 				05A8882F29F29DC200BDB96B /* font.txt */,
+				ADD0CCDD2AE28F7400452C31 /* text.txt */,
+				AD12519C2AD9625100F8C9F8 /* TACen.txt */,
+				AD12519D2AD9625100F8C9F8 /* TACjp.txt */,
 				05B1774D29BB3CFE00F8FC87 /* graphView.swift */,
 				05B1774F29BB41DC00F8FC87 /* infoView.swift */,
 				05B388782A4EE30F00A73177 /* apitestView.swift */,
 				05B1775329BB42F600F8FC87 /* FoodView.swift */,
 				05B1775129BB42CC00F8FC87 /* ArticleAPI.swift */,
 				05A8883329F2A13B00BDB96B /* SettingView.swift */,
+				AD1251962AD959C200F8C9F8 /* TermsAndConditionsENView.swift */,
+				AD1251942AD9590000F8C9F8 /* TermsAndConditionsJPView.swift */,
 				05EBA6102A7D08D000757387 /* fix.swift */,
 				058B1F7C2A8F815B0064DA60 /* RootView.swift */,
 				058B1F7E2A8F81990064DA60 /* WorkThroughView.swift */,
@@ -287,7 +302,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD0CCDE2AE28F7400452C31 /* text.txt in Resources */,
 				05B1772929BB3B6500F8FC87 /* Preview Assets.xcassets in Resources */,
+				AD12519F2AD9625100F8C9F8 /* TACjp.txt in Resources */,
+				AD12519E2AD9625100F8C9F8 /* TACen.txt in Resources */,
 				05A8883029F29DC200BDB96B /* font.txt in Resources */,
 				05D9BC8929E9638600908838 /* Quote.txt in Resources */,
 				05B1772629BB3B6500F8FC87 /* Assets.xcassets in Resources */,
@@ -320,8 +338,10 @@
 				05B1774E29BB3CFE00F8FC87 /* graphView.swift in Sources */,
 				058B1F7F2A8F81990064DA60 /* WorkThroughView.swift in Sources */,
 				05A8883429F2A13B00BDB96B /* SettingView.swift in Sources */,
+				AD1251972AD959C200F8C9F8 /* TermsAndConditionsENView.swift in Sources */,
 				0529CBC029FBE0D200D4F22C /* testView.swift in Sources */,
 				05EBA6112A7D08D000757387 /* fix.swift in Sources */,
+				AD1251952AD9590000F8C9F8 /* TermsAndConditionsJPView.swift in Sources */,
 				05B1775229BB42CC00F8FC87 /* ArticleAPI.swift in Sources */,
 				05B1772429BB3B6000F8FC87 /* ContentView.swift in Sources */,
 				05B1772229BB3B6000F8FC87 /* Master_healthKitAppApp.swift in Sources */,
