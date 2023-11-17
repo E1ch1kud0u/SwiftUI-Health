@@ -75,17 +75,6 @@ struct FirstView: View {
     }
 
     private func updateRandomLineAndFont() {
-//        if let filepath = Bundle.main.path(forResource: "Quote", ofType: "txt") {
-//            do {
-//                let contents = try String(contentsOfFile: filepath)
-//                let lines = contents.components(separatedBy: .newlines)
-//                self.randomLine = lines.randomElement() ?? ""
-//            } catch {
-//                print("Error loading contents of file")
-//            }
-//        } else {
-//            print("File not found")
-//        }
         if let quoteFilePath = Bundle.main.path(forResource: "Quote", ofType: "txt") {
             do {
                 let quoteContents = try String(contentsOfFile: quoteFilePath)
@@ -109,19 +98,8 @@ struct FirstView: View {
         } else {
             print("File not found")
         }
-        
-//        if let filepath = Bundle.main.path(forResource: "text", ofType: "txt") {
-//            do {
-//                let contents = try String(contentsOfFile: filepath)
-//                let imageNames = contents.components(separatedBy: .newlines)
-//                self.randomImageName = imageNames.randomElement() ?? ""
-//            } catch {
-//                print("Error loading contents of file")
-//            }
-//        } else {
-//            print("File not found")
-//        }
-        if let imagesFilePath = Bundle.main.path(forResource: "image", ofType: "txt") {
+
+        if let imagesFilePath = Bundle.main.path(forResource: "text", ofType: "txt") {
             do {
                 let imagesContents = try String(contentsOfFile: imagesFilePath)
                 let imageNames = imagesContents.components(separatedBy: .newlines)

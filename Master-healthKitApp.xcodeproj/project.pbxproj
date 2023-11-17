@@ -33,6 +33,7 @@
 		AD1251972AD959C200F8C9F8 /* TermsAndConditionsENView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1251962AD959C200F8C9F8 /* TermsAndConditionsENView.swift */; };
 		AD12519E2AD9625100F8C9F8 /* TACen.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD12519C2AD9625100F8C9F8 /* TACen.txt */; };
 		AD12519F2AD9625100F8C9F8 /* TACjp.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD12519D2AD9625100F8C9F8 /* TACjp.txt */; };
+		AD858B082AF50A9B00FC9EB7 /* people.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD858B072AF50A9B00FC9EB7 /* people.xcassets */; };
 		ADD0CCDE2AE28F7400452C31 /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = ADD0CCDD2AE28F7400452C31 /* text.txt */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		AD1251962AD959C200F8C9F8 /* TermsAndConditionsENView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsENView.swift; sourceTree = "<group>"; };
 		AD12519C2AD9625100F8C9F8 /* TACen.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TACen.txt; path = ../../../Downloads/TACen.txt; sourceTree = "<group>"; };
 		AD12519D2AD9625100F8C9F8 /* TACjp.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TACjp.txt; path = ../../../Downloads/TACjp.txt; sourceTree = "<group>"; };
+		AD858B072AF50A9B00FC9EB7 /* people.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = people.xcassets; sourceTree = "<group>"; };
 		ADD0CCDD2AE28F7400452C31 /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text.txt; path = ../../../Downloads/text.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 				05B1772129BB3B6000F8FC87 /* Master_healthKitAppApp.swift */,
 				0529CBBF29FBE0D200D4F22C /* testView.swift */,
 				05B1772329BB3B6000F8FC87 /* ContentView.swift */,
+				AD858B072AF50A9B00FC9EB7 /* people.xcassets */,
 				05D9BC8829E9638600908838 /* Quote.txt */,
 				05A8882F29F29DC200BDB96B /* font.txt */,
 				ADD0CCDD2AE28F7400452C31 /* text.txt */,
@@ -302,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD858B082AF50A9B00FC9EB7 /* people.xcassets in Resources */,
 				ADD0CCDE2AE28F7400452C31 /* text.txt in Resources */,
 				05B1772929BB3B6500F8FC87 /* Preview Assets.xcassets in Resources */,
 				AD12519F2AD9625100F8C9F8 /* TACjp.txt in Resources */,
