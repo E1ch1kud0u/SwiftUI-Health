@@ -68,13 +68,30 @@ struct FirstView: View {
         }
         .onAppear {
             // ランダムな行とフォントを設定するロジックは省略
-
+            
             // ダークモード切り替え時にランダムな行とフォントを再設定する
             updateRandomLineAndFont()
         }
     }
-
     private func updateRandomLineAndFont() {
+        
+        let famousNames = [
+                "Audrey Hepburn", "Bob Marley", "Bruce Lee", "Charlie Chaplin",
+                "Marilyn Monroe", "Mark Twain", "Martin Luther King Junior",
+                "Michael Jordan", "Osamu Tezuka", "Pablo Picasso", "Plato",
+                "Socrates", "Steve Jobs", "Theodore Roosevelt", "Thomas Alva Edison",
+                "Walt Disney", "William Shakespeare", "Winston Churchill",
+                "Ichiro Suzuki", "Jesse Jackson", "Johann Wolfgang Von Goethe",
+                "Ludwig van Beethoven"
+            ]
+        // ランダムに名前を選択し、空文字列でないことを確認
+           if let randomName = famousNames.randomElement(), !randomName.isEmpty {
+               self.randomImageName = randomName
+           } else {
+               print("Valid image name not found")
+           }
+        
+        
         if let quoteFilePath = Bundle.main.path(forResource: "Quote", ofType: "txt") {
             do {
                 let quoteContents = try String(contentsOfFile: quoteFilePath)
@@ -99,19 +116,16 @@ struct FirstView: View {
             print("File not found")
         }
 
-        if let imagesFilePath = Bundle.main.path(forResource: "text", ofType: "txt") {
-            do {
-                let imagesContents = try String(contentsOfFile: imagesFilePath)
-                let imageNames = imagesContents.components(separatedBy: .newlines)
-                // 同じインデックスの有名人の名前を取得
-                if let index = imageNames.firstIndex(of: randomLine) {
-                    self.randomImageName = imageNames[index]
-                }
-            } catch {
-                print("Error loading contents of image file")
-            }
-        } else {
-            print("Image file not found")
-        }
+       
+    }
+
+}
+
+
+//プレビューを記載
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
+
