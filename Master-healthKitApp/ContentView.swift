@@ -76,13 +76,14 @@ struct FirstView: View {
     private func updateRandomLineAndFont() {
         
         let famousNames = [
-                "Audrey Hepburn", "Bob Marley", "Bruce Lee", "Charlie Chaplin",
-                "Marilyn Monroe", "Mark Twain", "Martin Luther King Junior",
-                "Michael Jordan", "Osamu Tezuka", "Pablo Picasso", "Plato",
-                "Socrates", "Steve Jobs", "Theodore Roosevelt", "Thomas Alva Edison",
-                "Walt Disney", "William Shakespeare", "Winston Churchill",
-                "Ichiro Suzuki", "Jesse Jackson", "Johann Wolfgang Von Goethe",
-                "Ludwig van Beethoven"
+                "William Shakespeare", "Walt Disney", "Audrey Hepburn", "Socrates",
+                "Bob Marley", "Charlie Chaplin", "Winston Churchill",
+                "Michael Jordan", "Mark Twain", "Ichiro Suzuki", "Abraham Lincoln",
+                "Johann Wolfgang Von Goethe", "Albert Einstein", "Jesse Jackson", "Theodore Roosevelt",
+                "Thomas Alva Edison", "Plato", "Steve Jobs",
+                "Mahatma Gandhi", "Osamu Tezuka", "Bruce Lee",
+                "Pablo Picaso", "Martin Luther King Junior",
+                "Ludwig van Beethoven", "Marilyn Monroe"
             ]
         // ランダムに名前を選択し、空文字列でないことを確認
            if let randomName = famousNames.randomElement(), !randomName.isEmpty {
