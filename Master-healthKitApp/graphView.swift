@@ -16,26 +16,40 @@ struct graphView: View {
     
     var body: some View {
         VStack {
-            Button("Authorize Data") {
-                authorizeStepCount()
-                authorizeHeartRate()
-            }
-            
             GeometryReader { geo in
                 HStack { // Use HStack instead of VStack
                     if let maxStep = stepHistory.max(), let minStep = stepHistory.min() {
-                        LineChartView(data: stepHistory, title: "Step Count", legend: "Steps", form: ChartForm.medium)
-                            .frame(width: geo.size.width / 2, height: 200) // Set a fixed width for the chart view
+                        VStack {
+                            LineChartView(data: stepHistory, title: "Step Count", legend: "Steps", form: ChartForm.medium)
+                                .frame(width: geo.size.width / 2, height: 200) // Set a fixed width for the chart view
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     if let maxHR = heartRateHistory.max(), let minHR = heartRateHistory.min() {
-                        LineChartView(data: heartRateHistory, title: "Heart Rate", legend: "BPM", form: ChartForm.medium)
-                            .frame(width: geo.size.width / 2, height: 200) // Set a fixed width for the chart view
+                        VStack {
+                            LineChartView(data: heartRateHistory, title: "Heart Rate", legend: "BPM", form: ChartForm.medium)
+                                .frame(width: geo.size.width / 2, height: 200) // Set a fixed width for the chart view
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 5)
             }
+            .padding()
         }
-        .animation(.easeInOut) // Apply animation to the container view
+        .animation(.easeInOut)
+        .onAppear{
+            authorizeStepCount()
+            authorizeHeartRate()
+        }// Apply animation to the container view
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.white.edgesIgnoringSafeArea(.all))
     }
+
     
      func authorizeStepCount() {
         let healthTypesToRead: Set<HKObjectType> = [stepCount]
