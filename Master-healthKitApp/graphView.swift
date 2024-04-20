@@ -17,7 +17,7 @@ struct graphView: View {
     var body: some View {
         VStack {
             GeometryReader { geo in
-                HStack { // Use HStack instead of VStack
+                VStack { // Use HStack instead of VStack
                     if let maxStep = stepHistory.max(), let minStep = stepHistory.min() {
                         VStack {
                             LineChartView(data: stepHistory, title: "Step Count", legend: "Steps", form: ChartForm.medium)
@@ -112,12 +112,17 @@ struct graphView: View {
 
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
         let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: predicate, options: .discreteAverage) { (query, result, error) in
-            guard let result = result, let average = result.averageQuantity() else {
-                if let error = error {
-                    print("Failed to fetch heart rate: \(error.localizedDescription)")
-                }
+            if let error = error {
+                print("Failed to fetch heart rate: \(error.localizedDescription)")
                 return
             }
+            
+            guard let result = result, let average = result.averageQuantity() else {
+                print("No heart rate data available.")
+                return
+            }
+            
+            print("Fetched heart rate data: \(average)")
 
             DispatchQueue.main.async {
                 self.hRate = average.doubleValue(for: HKUnit(from: "count/min"))
