@@ -20,15 +20,16 @@ struct graphView: View {
                 VStack { // Use HStack instead of VStack
                     if let maxStep = stepHistory.max(), let minStep = stepHistory.min() {
                         VStack {
-                            LineChartView(data: stepHistory, title: "Step Count", legend: "Steps", form: ChartForm.medium)
+                            LineChartView(data: stepHistory, title: "Steps", legend: "Steps", form: ChartForm.medium)
                                 .frame(width: geo.size.width / 2, height: 200) // Set a fixed width for the chart view
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
+                    Spacer().frame(height: 50)
                     if let maxHR = heartRateHistory.max(), let minHR = heartRateHistory.min() {
                         VStack {
                             LineChartView(data: heartRateHistory, title: "Heart Rate", legend: "BPM", form: ChartForm.medium)
-                                .frame(width: geo.size.width / 2, height: 200) // Set a fixed width for the chart view
+                                .frame(width: geo.size.width / 2, height: 200,  alignment: .center) // Set a fixed width for the chart view
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
@@ -36,9 +37,9 @@ struct graphView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
                 .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 5)
+                
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
         }
         .animation(.easeInOut)
